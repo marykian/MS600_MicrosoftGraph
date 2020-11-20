@@ -39,17 +39,14 @@ namespace GraphConsoleApp
       }
     }
 
-    static async void graphExec(IConfigurationRoot config)
-    {
-      
-    }
     static string[] GetMailAddresses()
     {
-      using (StreamReader file = File.OpenText(@"C:\temp\TestUsers.json"))
+      string filePath = System.IO.Directory.GetCurrentDirectory() + @"\TestUsers.json";
+      using (StreamReader file = File.OpenText(filePath))
       {
         JsonSerializer serializer = new JsonSerializer();
-        string[] movie2 = (string[])serializer.Deserialize(file, typeof(string[]));
-        return movie2;
+        string[] users = (string[])serializer.Deserialize(file, typeof(string[]));
+        return users;
       }
     }
 
